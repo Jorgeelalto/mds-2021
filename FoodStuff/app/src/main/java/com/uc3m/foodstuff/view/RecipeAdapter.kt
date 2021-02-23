@@ -22,7 +22,7 @@ class RecipeAdapter(private val viewModel: RecipeListViewModel): RecyclerView.Ad
             RecipeItemViewHolder(viewModel, ItemRecipeBinding.inflate(LayoutInflater.from(parent.context)))
 
     override fun onBindViewHolder(holder: RecipeItemViewHolder, position: Int) {
-        val tea = viewModel.getItem(position)
+        val recipe = viewModel.getItem(position)
         holder.recipeName.text = "Wonderful ${recipe.name}"
     }
 

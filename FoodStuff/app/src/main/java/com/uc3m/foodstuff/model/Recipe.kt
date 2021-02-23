@@ -11,5 +11,5 @@ data class Recipe(
     val user: String = ""
     // TODO add more fields
     ) {
-    val isValid: Boolean get() = id >= 0 && name.isNotEmpty() && description.isNotEmpty() && user.isNotEmpty()
+    val isValid: Boolean get() = id.isNotEmpty() && name.isNotEmpty() && description.isNotEmpty() && user.isNotEmpty()
 }

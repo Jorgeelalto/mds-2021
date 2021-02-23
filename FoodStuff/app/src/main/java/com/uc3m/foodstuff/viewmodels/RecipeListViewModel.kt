@@ -1,9 +1,6 @@
 package com.uc3m.foodstuff.viewmodels
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.uc3m.foodstuff.model.Recipe
 import com.uc3m.foodstuff.model.RecipeDatabase
 import com.uc3m.foodstuff.model.RecipeService
@@ -16,7 +13,10 @@ class RecipeListViewModel(private val database: RecipeDatabase, private val webs
     private val _navigate: MutableLiveData<Event<Boolean>> = MutableLiveData()
     val navigate: LiveData<Event<Boolean>> = _navigate
     private var recipeList = listOf<Recipe>()
-    data class Item(val name: String)
+    data class Item(val id: String) {
+        val name: String = ""
+        // TODO add the rest of the fields
+    }
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
@@ -33,7 +33,7 @@ class RecipeListViewModel(private val database: RecipeDatabase, private val webs
 
     fun getItem(n: Int) = Item(id = recipeList[n].id)
 
-    fun onClickItem(n: String) {
+    fun onClickItem(n: Int) {
         println("Item $n clicked")
         viewModelScope.launch(Dispatchers.IO) {
             val recipe = webservice.getRecipe(n).await()
