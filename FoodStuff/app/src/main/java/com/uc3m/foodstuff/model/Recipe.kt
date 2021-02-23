@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 data class Recipe(
     // TODO this may be removed sometime (key is shared bc of the API db)
     @PrimaryKey(autoGenerate = true)
-    val id: Int = 0,
+    val id: String = "0",
     val name: String = "",
     val description: String = "",
     val user: String = ""
