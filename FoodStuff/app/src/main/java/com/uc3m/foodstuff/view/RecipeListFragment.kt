@@ -9,6 +9,8 @@ import android.widget.Button
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.uc3m.foodstuff.R
+import com.uc3m.foodstuff.databinding.FragmentRecipeListBinding
+import com.uc3m.foodstuff.viewmodels.RecipeListViewModel
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -17,7 +19,7 @@ class RecipeListFragment : Fragment() {
 
     private lateinit var binding: FragmentRecipeListBinding
     private val viewModel: RecipeListViewModel by viewModels {
-        val app = activity?.application as FoodStuffApp
+        val app = activity?.application as FoodStuffActivity
         RecipeListViewModelFactory(app.database, app.webservice)
     }
 
