@@ -13,7 +13,7 @@ class RecipeListViewModel(private val database: RecipeDatabase, private val webs
     private val _navigate: MutableLiveData<Event<Boolean>> = MutableLiveData()
     val navigate: LiveData<Event<Boolean>> = _navigate
     private var recipeList = listOf<Recipe>()
-    data class Item(val id: String) {
+    data class Item(val id: Int) {
         val name: String = ""
         // TODO add the rest of the fields
     }

@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.uc3m.foodstuff.R
 import com.uc3m.foodstuff.databinding.FragmentRecipeListBinding
 import com.uc3m.foodstuff.viewmodels.RecipeListViewModel
+import com.uc3m.foodstuff.viewmodels.RecipeListViewModelFactory
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
