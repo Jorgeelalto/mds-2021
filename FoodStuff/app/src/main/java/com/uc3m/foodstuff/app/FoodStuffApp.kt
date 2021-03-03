@@ -29,9 +29,9 @@ class FoodStuffApp: Application() {
         CoroutineScope(Dispatchers.IO + SupervisorJob()).launch {
             database.clearAllTables()
             database.recipeDao.apply {
-                this.create(recipe = Recipe(id = "0", name = "Recipe 1"))
-                this.create(recipe = Recipe(id = "1", name = "Recipe 2"))
-                this.create(recipe = Recipe(id = "2", name = "Recipe 3"))
+                this.create(recipe = Recipe(id = 0, name = "Recipe 1"))
+                this.create(recipe = Recipe(id = 1, name = "Recipe 2"))
+                this.create(recipe = Recipe(id = 2, name = "Recipe 3"))
             }
         }
     }
