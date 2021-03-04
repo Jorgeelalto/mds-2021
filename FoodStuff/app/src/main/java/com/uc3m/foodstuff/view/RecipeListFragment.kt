@@ -9,6 +9,10 @@ import android.widget.Button
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.uc3m.foodstuff.R
+import com.uc3m.foodstuff.app.FoodStuffApp
+import com.uc3m.foodstuff.databinding.FragmentRecipeListBinding
+import com.uc3m.foodstuff.viewmodels.RecipeListViewModel
+import com.uc3m.foodstuff.viewmodels.RecipeListViewModelFactory
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -34,10 +38,15 @@ class RecipeListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.recyclerView.adapter = RecipeListAdapter(viewModel = viewModel)
-        binding.fab.setOnClickListener {
+        // TODO is this correct?
+        binding.recipeList.adapter = RecipeAdapter(viewModel = viewModel)
+        //binding.recipeList.adapter = RecipeListAdapter(viewModel = viewModel)
+        binding.buttonFirst.setOnClickListener {
             viewModel.addButtonClicked()
         }
+        // binding.fab.setOnClickListener {
+        //     viewModel.addButtonClicked()
+        // }
 
         view.findViewById<Button>(R.id.button_first).setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)

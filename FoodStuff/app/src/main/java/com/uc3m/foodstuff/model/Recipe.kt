@@ -1,15 +1,17 @@
 package com.uc3m.foodstuff.model
 
+import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+@Entity(tableName = "recipes")
 data class Recipe(
     // TODO this may be removed sometime (key is shared bc of the API db)
     @PrimaryKey(autoGenerate = true)
-    val id: String = "0",
+    val id: Int = 0,
     val name: String = "",
     val description: String = "",
     val user: String = ""
     // TODO add more fields
     ) {
-    val isValid: Boolean get() = id.isNotEmpty() && name.isNotEmpty() && description.isNotEmpty() && user.isNotEmpty()
+    val isValid: Boolean get() = id >= 0 && name.isNotEmpty() && description.isNotEmpty() && user.isNotEmpty()
 }

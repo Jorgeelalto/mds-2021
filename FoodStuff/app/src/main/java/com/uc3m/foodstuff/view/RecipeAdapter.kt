@@ -4,9 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.uc3m.foodstuff.databinding.ItemRecipeBinding
 import com.uc3m.foodstuff.viewmodels.RecipeListViewModel
 
-class RecipeAdapter(private val viewModel: RecipeListViewModel): RecyclerView.Adapter<RecipeListAdapter.RecipeItemViewHolder>() {
+class RecipeAdapter(private val viewModel: RecipeListViewModel): RecyclerView.Adapter<RecipeAdapter.RecipeItemViewHolder>() {
 
     class RecipeItemViewHolder(private val viewModel: RecipeListViewModel, binding: ItemRecipeBinding): RecyclerView.ViewHolder(binding.root), View.OnClickListener {
         val recipeName = binding.recipeName

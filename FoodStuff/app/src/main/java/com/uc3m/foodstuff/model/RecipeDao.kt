@@ -10,11 +10,11 @@ interface RecipeDao {
     @Insert
     suspend fun create(recipe: Recipe)
     @Query("SELECT * FROM recipes WHERE id = :id")
-    suspend fun get(id: String): Recipe?
+    suspend fun get(id: Int): Recipe?
     @Query("SELECT * FROM recipes")
     suspend fun fetchRecipes(): List<Recipe>
     @Update
     suspend fun update(recipe: Recipe)
     @Query("DELETE FROM recipes WHERE id = :id")
-    suspend fun delete(id: String)
+    suspend fun delete(id: Int)
 }
