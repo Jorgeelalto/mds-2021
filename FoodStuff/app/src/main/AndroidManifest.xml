@@ -5,6 +5,7 @@
     <!-- TODO put this line inside <application> when we have the activity subclass -->
     <!-- android:name="nameOfTheSubclass" -->
     <application
+        android:name=".app.FoodStuffApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

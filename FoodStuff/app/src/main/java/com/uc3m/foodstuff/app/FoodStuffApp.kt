@@ -19,7 +19,7 @@ class FoodStuffApp: Application() {
     val webservice by lazy {
         Retrofit.Builder()
                 // TODO put the firebase DB URL here
-                .baseUrl("firebaseURL")
+                .baseUrl("https://reecipe-weekly-default-rtdb.europe-west1.firebasedatabase.app")
                 .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
                 .build().create(RecipeService::class.java)
     }
@@ -30,8 +30,8 @@ class FoodStuffApp: Application() {
             database.clearAllTables()
             database.recipeDao.apply {
                 this.create(recipe = Recipe(id = 0, name = "Recipe 1"))
-                this.create(recipe = Recipe(id = 1, name = "Recipe 2"))
-                this.create(recipe = Recipe(id = 2, name = "Recipe 3"))
+                this.create(recipe = Recipe(id = 10, name = "Recipe 2"))
+                this.create(recipe = Recipe(id = 200, name = "Recipe 3"))
             }
         }
     }
