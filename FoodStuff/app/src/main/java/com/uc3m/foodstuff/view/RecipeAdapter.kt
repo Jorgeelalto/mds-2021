@@ -1,9 +1,11 @@
 package com.uc3m.foodstuff.view
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.uc3m.foodstuff.app.FoodStuffApp
 import com.uc3m.foodstuff.databinding.ItemRecipeBinding
 import com.uc3m.foodstuff.viewmodels.RecipeListViewModel
 
@@ -24,7 +26,8 @@ class RecipeAdapter(private val viewModel: RecipeListViewModel): RecyclerView.Ad
 
     override fun onBindViewHolder(holder: RecipeItemViewHolder, position: Int) {
         val recipe = viewModel.getItem(position)
-        holder.recipeName.text = "Wonderful ${recipe.name}"
+        Log.i("FoodStuff", recipe.name)
+        holder.recipeName.text = "Nice ${recipe.name}"
     }
 
     override fun getItemCount(): Int = viewModel.numberOfItems
