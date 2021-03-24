@@ -22,7 +22,7 @@ class WeeklyFragment : Fragment() {
         weeklyViewModel =
                 ViewModelProvider(this).get(WeeklyViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_weekly, container, false)
-        val textView: TextView = root.findViewById(R.id.text_dashboard)
+        val textView: TextView = root.findViewById(R.id.text_hereweekly)
         weeklyViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
