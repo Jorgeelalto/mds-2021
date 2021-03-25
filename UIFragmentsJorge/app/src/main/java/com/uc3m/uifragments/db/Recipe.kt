@@ -8,6 +8,7 @@ import java.sql.Date
 data class Recipe (
     @PrimaryKey
     val id: String,
+    val name: String,
     val user: String,
     val date: String,
     val desc: String,

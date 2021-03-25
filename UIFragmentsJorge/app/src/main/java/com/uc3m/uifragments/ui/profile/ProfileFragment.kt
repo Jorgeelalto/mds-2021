@@ -1,5 +1,6 @@
 package com.uc3m.uifragments.ui.profile
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +9,9 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.room.Room
 import com.uc3m.uifragments.R
+import com.uc3m.uifragments.db.AppDatabase
 
 class ProfileFragment : Fragment() {
 
