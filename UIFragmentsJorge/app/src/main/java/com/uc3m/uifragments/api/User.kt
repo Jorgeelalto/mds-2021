@@ -15,5 +15,8 @@ data class User (
     val email: String = "",
     @SerializedName("password")
     @Expose
-    val password: String = ""
+    val password: String = "",
+    @SerializedName("recipes")
+    @Expose
+    val recipes: List<Recipe>
 )

@@ -24,5 +24,5 @@ data class Recipe (
     val ingredients: Map<String, String>,
     @SerializedName("steps")
     @Expose
-    val steps: Map<Int, String>
+    val steps: List<String>
 )
