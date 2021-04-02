@@ -10,13 +10,15 @@ curl -X POST $API/users/jorge.json -d '{
 	"name": "Jorge",
 	"surname": "Marcos Chavez",
 	"email": "jorge@reecipes.com",
-	"password": "67C888AF8AD80F0232832431FB0BBB478F12740FF8B451D8D4CE0238A2D8B63A"
+	"password": "67C888AF8AD80F0232832431FB0BBB478F12740FF8B451D8D4CE0238A2D8B63A",
+	"recipes": ["d8ah2ea3"]
 }'
 curl -X POST $API/users/manya.json -d '{
 	"name": "Manya",
 	"surname": "Khanna",
 	"email": "manya@reecipes.com",
-	"password": "BD969324DC013480BA4395DCA0B793A223684B7EC00C96831A840E9ED11FB50C"
+	"password": "BD969324DC013480BA4395DCA0B793A223684B7EC00C96831A840E9ED11FB50C",
+	"recipes": ["d8ah2ea3"]
 }'
 
 curl -X GET $API/users.json
