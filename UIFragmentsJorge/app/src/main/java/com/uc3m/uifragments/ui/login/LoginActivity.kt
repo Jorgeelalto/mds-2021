@@ -110,7 +110,7 @@ class LoginActivity : AppCompatActivity() {
         ).show()
         val intent = Intent(this, MainActivity::class.java).apply {
         }
-        //startActivity(Intent(applicationContext, MainActivity.class))
+        startActivity(Intent(applicationContext, MainActivity::class.java))
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {
