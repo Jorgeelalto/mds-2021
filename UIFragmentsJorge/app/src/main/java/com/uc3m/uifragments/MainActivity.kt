@@ -1,5 +1,6 @@
 package com.uc3m.uifragments
 
+import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -9,9 +10,11 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.uc3m.uifragments.api.ApiClient
 import com.uc3m.uifragments.api.Recipe
 import com.uc3m.uifragments.api.RecipesAdapter
+import com.uc3m.uifragments.ui.newrecipe.NewRecipeActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -27,6 +30,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
+        val fabNewRecipe: FloatingActionButton = findViewById(R.id.fab_new_recipe)
+        fabNewRecipe.setOnClickListener {
+            startActivity(Intent(this, NewRecipeActivity::class.java))
+        }
+
         val navController = findNavController(R.id.nav_host_fragment)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -37,10 +45,10 @@ class MainActivity : AppCompatActivity() {
 
         // my things
         // TODO FIX!!!!!!!!!!
-        findViewById<RecyclerView>(R.id.recipe_recyclerview).layoutManager = LinearLayoutManager(this@MainActivity)
+        /*findViewById<RecyclerView>(R.id.recipe_recyclerview).layoutManager = LinearLayoutManager(this@MainActivity)
         recipesAdapter = RecipesAdapter(this, recipeList)
         findViewById<RecyclerView>(R.id.recipe_recyclerview).adapter = recipesAdapter
-        getRecipes()
+        getRecipes()*/
     }
 
     private fun getRecipes() {
