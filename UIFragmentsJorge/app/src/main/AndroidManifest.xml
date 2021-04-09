@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.uc3m.uifragments">
+    package="com.uc3m.foodstuff">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,14 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UIFragmentsJorge">
         <activity
-            android:name=".ui.newrecipe.NewRecipeActivity"
+            android:name="com.uc3m.foodstuff.ui.newrecipe.NewRecipeActivity"
             android:label="@string/title_activity_new_recipe"
             android:theme="@style/Theme.UIFragmentsJorge.NoActionBar"></activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.uc3m.foodstuff.MainActivity"
             android:label="@string/app_name"></activity>
         <activity
-            android:name=".ui.login.LoginActivity"
+            android:name="com.uc3m.foodstuff.ui.login.LoginActivity"
             android:label="Sign in">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
