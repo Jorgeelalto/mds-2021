@@ -3,8 +3,6 @@ package com.uc3m.foodstuff.app
 import android.app.Application
 import com.google.gson.GsonBuilder
 import com.uc3m.foodstuff.api.ApiService
-import com.uc3m.foodstuff.db.AppDatabase
-import com.uc3m.foodstuff.db.Recipe
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -14,9 +12,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class FoodStuffApp: Application() {
 
-    val database by lazy {
-        AppDatabase.getInstance(this)
-    }
+    // TODO maybe put firestore here?
+    //val database by lazy {
+    //    AppDatabase.getInstance(this)
+    //}
     val webservice by lazy {
         Retrofit.Builder()
                 .baseUrl("https://reecipe-weekly-default-rtdb.europe-west1.firebasedatabase.app")
@@ -24,6 +23,7 @@ class FoodStuffApp: Application() {
                 .build().create(ApiService::class.java)
     }
 
+    /*
     override fun onCreate() {
         super.onCreate()
 
@@ -41,5 +41,5 @@ class FoodStuffApp: Application() {
                 ))
             }
         }
-    }
+    }*/
 }
