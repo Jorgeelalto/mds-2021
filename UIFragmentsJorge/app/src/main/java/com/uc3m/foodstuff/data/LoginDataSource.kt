@@ -38,6 +38,7 @@ class LoginDataSource {
         val db = Firebase.firestore
         // Get the pass of the user with that username
         val user = db.collection("users").document(username)
+        /* TODO remove
         var documentSnapshot: DocumentSnapshot? = null
         user.get().addOnSuccessListener { document ->
             if (document != null) {
@@ -65,6 +66,7 @@ class LoginDataSource {
             //Toast.makeText(this, "You have entered an incorrect password", Toast.LENGTH_SHORT)
             return Result.Error(IOException("Incorrect password for ${username}"))
         }
+         */
 
         // TODO Possibly change the UUID?
         val loggedInUser = LoggedInUser(java.util.UUID.randomUUID().toString(), username)
