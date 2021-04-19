@@ -17,6 +17,8 @@ import java.security.NoSuchAlgorithmException
 class LoginManager(var context: Context) {
 
     private val tag = "LoginManager"
+    private val loggedUserRepo: LoggedUserRepo = LoggedUserRepo(context)
+    //private val sharedPreferences = context.getSharedPreferences("com.uc3m.foodstuff.PREF", Context.MODE_PRIVATE)
 
     private var pass: String = ""
 
@@ -51,7 +53,10 @@ class LoginManager(var context: Context) {
                 Toast.makeText(context, "This user does not exist or its data is corrupt", Toast.LENGTH_SHORT)
             } else if (document.get("pass") == null) {
                 Log.d(tag, "Document has no \"pass\" field")
-                Toast.makeText(context,"This user does not have a password and its data is corrupt", Toast.LENGTH_SHORT)
+                Toast.makeText(context,"This user does not have a password and/or its data is corrupt", Toast.LENGTH_SHORT)
+            } else if (document.get("pass") == "") {
+                Log.d(tag, "Document's \"pass\" field is empty")
+                Toast.makeText(context,"This user does not have a password and/or its data is corrupt", Toast.LENGTH_SHORT)
             } else {
                 Log.d(tag, "DocumentSnapshot data: ${document.data}")
                 pass = document.get("pass") as String
@@ -75,7 +80,7 @@ class LoginManager(var context: Context) {
             Toast.makeText(context, "You have entered an incorrect password", Toast.LENGTH_SHORT)
             return false
         }
-        // TODO put the username somewhere (sharedpreferences or whatever)
+        loggedUserRepo.setLoggedUser(username)
         startActivity(context, Intent(context, MainActivity::class.java), null)
         return true
     }

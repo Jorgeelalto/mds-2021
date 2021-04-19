@@ -41,13 +41,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_profile, R.id.navigation_weekly, R.id.navigation_search))
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-
-        // my things
-        // TODO FIX!!!!!!!!!!
-        /*findViewById<RecyclerView>(R.id.recipe_recyclerview).layoutManager = LinearLayoutManager(this@MainActivity)
-        recipesAdapter = RecipesAdapter(this, recipeList)
-        findViewById<RecyclerView>(R.id.recipe_recyclerview).adapter = recipesAdapter
-        getRecipes()*/
     }
 
     private fun getRecipes() {

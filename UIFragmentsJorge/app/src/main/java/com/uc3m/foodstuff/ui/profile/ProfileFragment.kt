@@ -9,10 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.uc3m.foodstuff.R
+import com.uc3m.foodstuff.login.LoggedUserRepo
 
 class ProfileFragment : Fragment() {
 
     private lateinit var profileViewModel: ProfileViewModel
+    private val loggedUserRepo by lazy { LoggedUserRepo(requireContext()) }
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -23,9 +25,10 @@ class ProfileFragment : Fragment() {
                 ViewModelProvider(this).get(ProfileViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_profile, container, false)
         val textView: TextView = root.findViewById(R.id.text_username)
-        profileViewModel.text.observe(viewLifecycleOwner, Observer {
+        textView.text = "Hello, ${loggedUserRepo.getLoggedUser()}."
+        /*profileViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
-        })
+        })*/
         return root
     }
 }
