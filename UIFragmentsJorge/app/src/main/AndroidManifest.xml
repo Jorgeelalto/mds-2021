@@ -19,11 +19,10 @@
             android:name="com.uc3m.foodstuff.MainActivity"
             android:label="@string/app_name"></activity>
         <activity
-            android:name="com.uc3m.foodstuff.ui.login.LoginActivity"
+            android:name="com.uc3m.foodstuff.login.LoginActivity"
             android:label="Sign in">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
