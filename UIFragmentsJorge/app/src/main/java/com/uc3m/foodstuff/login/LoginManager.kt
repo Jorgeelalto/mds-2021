@@ -43,19 +43,25 @@ class LoginManager(var context: Context) {
         val user = db.collection("users").document(username)
 
         user.get().addOnSuccessListener { document ->
-            if (document != null) {
+            if (document == null) {
+                Log.d(tag, "No such document")
+                Toast.makeText(context, "This user does not exist", Toast.LENGTH_SHORT)
+            } else if (document.data == null) {
+                Log.d(tag, "Document is empty")
+                Toast.makeText(context, "This user does not exist or its data is corrupt", Toast.LENGTH_SHORT)
+            } else if (document.get("pass") == null) {
+                Log.d(tag, "Document has no \"pass\" field")
+                Toast.makeText(context,"This user does not have a password and its data is corrupt", Toast.LENGTH_SHORT)
+            } else {
                 Log.d(tag, "DocumentSnapshot data: ${document.data}")
                 pass = document.get("pass") as String
                 Log.d(tag, "pass: $pass")
                 manageLogin(username, password)
-            } else {
-                Log.d(tag, "No such document")
             }
         }
     }
 
     private fun manageLogin(username: String, password: String): Boolean {
-        Log.d(tag, "Jelow")
         if (pass == "") {
             Log.d(tag, "There is no password")
             Toast.makeText(context, "Password is empty", Toast.LENGTH_SHORT)

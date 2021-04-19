@@ -20,7 +20,7 @@
             android:label="@string/app_name"></activity>
         <activity
             android:name="com.uc3m.foodstuff.login.LoginActivity"
-            android:label="Sign in">
+            android:label="Food Stuff">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
