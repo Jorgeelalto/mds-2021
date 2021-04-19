@@ -18,6 +18,7 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import com.uc3m.foodstuff.MainActivity
 import com.uc3m.foodstuff.R
+import kotlinx.coroutines.delay
 
 class LoginActivity : AppCompatActivity() {
 
@@ -35,12 +36,8 @@ class LoginActivity : AppCompatActivity() {
         login.isEnabled = true
         login.setOnClickListener {
             loading.visibility = View.VISIBLE
-            Toast.makeText(
-                applicationContext,
-                "Holi",
-                Toast.LENGTH_LONG
-            ).show()
             loginManager.login(username.text.toString(), password.text.toString())
+            loading.visibility = View.INVISIBLE
         }
     }
 }
