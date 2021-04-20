@@ -10,9 +10,6 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.uc3m.foodstuff.api.ApiClient
-import com.uc3m.foodstuff.api.Recipe
-import com.uc3m.foodstuff.api.RecipesAdapter
 import com.uc3m.foodstuff.ui.newrecipe.NewRecipeActivity
 import retrofit2.Call
 import retrofit2.Callback
@@ -20,8 +17,8 @@ import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
-    private var recipeList: MutableList<Recipe> = mutableListOf<Recipe>()
-    private var recipesAdapter: RecipesAdapter? = null
+    //private var recipeList: MutableList<Recipe> = mutableListOf<Recipe>()
+    //private var recipesAdapter: RecipesAdapter? = null
     private lateinit var linearLayoutManager: LinearLayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,8 +42,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun getRecipes() {
 
-        var ap: ApiClient = ApiClient()
-        ap.apiService.getAllRecipes().enqueue(object: Callback<List<Recipe>> {
+        //var ap: ApiClient = ApiClient()
+        /*ap.apiService.getAllRecipes().enqueue(object: Callback<List<Recipe>> {
             override fun onFailure(call: Call<List<Recipe>>, t: Throwable) {
                 println("Error calling the API" + t.localizedMessage)
             }
@@ -58,6 +55,6 @@ class MainActivity : AppCompatActivity() {
                 recipesAdapter?.notifyDataSetChanged()
 
             }
-        })
+        })*/
     }
 }
