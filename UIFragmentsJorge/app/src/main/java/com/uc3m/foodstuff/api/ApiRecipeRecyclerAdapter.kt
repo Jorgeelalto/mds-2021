@@ -1,4 +1,4 @@
-package com.uc3m.foodstuff.fb
+package com.uc3m.foodstuff.api
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,17 +8,17 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.uc3m.foodstuff.R
 
-class RecipeRecyclerAdapter(
+class ApiRecipeRecyclerAdapter(
         val context: Context,
-        private val RecipeList: ArrayList<Recipe>)
-    : RecyclerView.Adapter<RecipeRecyclerAdapter.Holder>() {
+        private val RecipeList: ArrayList<ApiRecipe>)
+    : RecyclerView.Adapter<ApiRecipeRecyclerAdapter.Holder>() {
 
-    override fun onBindViewHolder(holder: RecipeRecyclerAdapter.Holder, position: Int) {
+    override fun onBindViewHolder(holder: ApiRecipeRecyclerAdapter.Holder, position: Int) {
         holder.bind(RecipeList[position], context)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeRecyclerAdapter.Holder {
-        val view = LayoutInflater.from(context).inflate(R.layout.fragment_profile_recipe, parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ApiRecipeRecyclerAdapter.Holder {
+        val view = LayoutInflater.from(context).inflate(R.layout.fragment_weekly_recipe, parent, false)
         return Holder(view)
     }
 
@@ -30,9 +30,10 @@ class RecipeRecyclerAdapter(
         private val recipeName = view?.findViewById<TextView>(R.id.recipe_name)
         private val recipeTime = view?.findViewById<TextView>(R.id.recipe_time)
 
-        fun bind(recipe: Recipe, context: Context) {
-            recipeName?.text = recipe.name
-            recipeTime?.text = recipe.time.toString()
+        fun bind(recipe: ApiRecipe, context: Context) {
+            // TODO make nice
+            recipeName?.text = recipe.title
+            recipeTime?.text = recipe.publisher
         }
     }
 }
