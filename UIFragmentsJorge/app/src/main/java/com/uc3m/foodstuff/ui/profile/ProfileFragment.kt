@@ -21,8 +21,7 @@ class ProfileFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        profileViewModel =
-                ViewModelProvider(this).get(ProfileViewModel::class.java)
+        profileViewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_profile, container, false)
         val textView: TextView = root.findViewById(R.id.text_username)
         textView.text = "Hello, ${loggedUserRepo.getLoggedUser()}."
