@@ -23,7 +23,7 @@ class RecipesAdapter(private val context: Context, private var list: MutableList
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
         val inflater = LayoutInflater.from(context)
-        val view: View = inflater.inflate(R.layout.fragment_view_recipe, parent, false)
+        val view: View = inflater.inflate(R.layout.fragment_weekly_recipe, parent, false)
         return RecipeViewHolder(view)
     }
 

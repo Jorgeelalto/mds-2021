@@ -9,8 +9,6 @@ import androidx.lifecycle.ViewModel
 
 class ProfileViewModel : ViewModel() {
 
-    // TODO get the username sharedprefs
-
     private val _text = MutableLiveData<String>().apply {
 
         value = "Hello, Username."

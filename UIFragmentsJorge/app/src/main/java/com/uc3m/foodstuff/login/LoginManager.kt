@@ -24,13 +24,13 @@ class LoginManager(var context: Context) {
 
 
     // Generate an hexadecimal SHA 1 string
-    fun hash(input: String): String {
+    private fun hash(input: String): String {
         return try {
             val md = MessageDigest.getInstance("SHA-1")
             val messageDigest = md.digest(input.toByteArray())
             val no = BigInteger(1, messageDigest)
             var hashtext = no.toString(16)
-            while (hashtext.length < 32) {
+            while (hashtext.length < 40) {
                 hashtext = "0$hashtext"
             }
             hashtext

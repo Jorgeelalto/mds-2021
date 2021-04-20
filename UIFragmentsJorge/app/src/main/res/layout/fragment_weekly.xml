@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/text_hereweekly"
         android:layout_marginTop="24dp"
-        tools:listitem="@layout/fragment_view_recipe"/>
+        tools:listitem="@layout/fragment_weekly_recipe"/>
     <!--
     <TextView
         android:id="@+id/text_dashboard"
