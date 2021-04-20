@@ -21,7 +21,7 @@ class ProfileFragment : Fragment() {
     private val loggedUserRepo by lazy { LoggedUserRepo(requireContext()) }
 
     private val firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
-    private var recipeList: ArrayList<Recipe>? = null
+    private var recipeList: ArrayList<Recipe> = arrayListOf()
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -44,8 +44,6 @@ class ProfileFragment : Fragment() {
         val recyclerView = root.findViewById<RecyclerView>(R.id.recipe_recyclerview)
         recyclerView.layoutManager = LinearLayoutManager(context)
 
-
-        recipeList = arrayListOf()
         // Attach a lambda to the firestore query so that the recipe list is filled each time
         // the query results are updated
         val documentReference = firestore.collection("recipes")
@@ -53,6 +51,7 @@ class ProfileFragment : Fragment() {
         val query = documentReference.whereEqualTo("user", loggedUserRepo?.getLoggedUser())
 
         query.addSnapshotListener { value, _ ->
+            recipeList = arrayListOf()
             if (value != null) {
                 for (d in value.documents) {
                     val recipe = d.toObject(Recipe::class.java)

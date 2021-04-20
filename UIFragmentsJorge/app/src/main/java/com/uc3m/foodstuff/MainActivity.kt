@@ -39,22 +39,4 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
-
-    private fun getRecipes() {
-
-        //var ap: ApiClient = ApiClient()
-        /*ap.apiService.getAllRecipes().enqueue(object: Callback<List<Recipe>> {
-            override fun onFailure(call: Call<List<Recipe>>, t: Throwable) {
-                println("Error calling the API" + t.localizedMessage)
-            }
-
-            override fun onResponse(call: Call<List<Recipe>>, response: Response<List<Recipe>>) {
-                val recipesResponse = response.body()
-                recipeList.clear()
-                recipesResponse?.let{recipeList.addAll(it)}
-                recipesAdapter?.notifyDataSetChanged()
-
-            }
-        })*/
-    }
 }

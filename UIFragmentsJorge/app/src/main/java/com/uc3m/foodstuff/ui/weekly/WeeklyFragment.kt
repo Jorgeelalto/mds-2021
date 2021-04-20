@@ -11,11 +11,15 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.FirebaseFirestore
 import com.uc3m.foodstuff.R
 import com.uc3m.foodstuff.api.ApiRecipe
 import com.uc3m.foodstuff.api.ApiRecipeRecyclerAdapter
 import com.uc3m.foodstuff.api.ApiService
 import com.uc3m.foodstuff.api.SearchResponse
+import com.uc3m.foodstuff.fb.Recipe
+import com.uc3m.foodstuff.fb.RecipeRecyclerAdapter
+import com.uc3m.foodstuff.login.LoggedUserRepo
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,10 +29,12 @@ import retrofit2.converter.gson.GsonConverterFactory
 const val BASE_URL = "https://forkify-api.herokuapp.com/api/"
 const val TAG = "WeeklyFragment"
 
+
 class WeeklyFragment : Fragment() {
 
     private lateinit var weeklyViewModel: WeeklyViewModel
-    private var recipeList: ArrayList<ApiRecipe> = arrayListOf()
+    private var recipeList: ArrayList<Recipe> = arrayListOf()
+    private val firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
 
 
     override fun onCreateView(
@@ -44,42 +50,33 @@ class WeeklyFragment : Fragment() {
             textView.text = it
         })
 
-        // ----------
-        // API things
-        // ----------
+        // ---------------------------
+        // Firebase recyclerview thing
+        // ---------------------------
 
+        // Get the recyclerView element and set its layoutManager
         val recyclerView = root.findViewById<RecyclerView>(R.id.weekly_recipe_recyclerview)
         recyclerView.layoutManager = LinearLayoutManager(context)
 
-        recipeList = arrayListOf()
-        val retrofit = Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-        val service = retrofit.create(ApiService::class.java)
-        val call = service.searchRecipes("pizza")
-        Log.d(TAG, call.toString())
-        call.enqueue(object: Callback<SearchResponse> {
-            override fun onResponse(call: Call<SearchResponse>, response: Response<SearchResponse>) {
-                if (response.code() == 200) {
-                    val search = response.body()
-                    if (search != null) {
-                        for (r in search.recipes) {
-                            recipeList.add(r)
-                        }
-                        val adapter = context?.let { ApiRecipeRecyclerAdapter(it, recipeList!!) }
-                        recyclerView.adapter = adapter
+        // Attach a lambda to the firestore query so that the recipe list is filled each time
+        // the query results are updated
+        val documentReference = firestore.collection("recipes")
+
+        documentReference.addSnapshotListener { value, _ ->
+            recipeList = arrayListOf()
+            if (value != null) {
+                for (d in value.documents) {
+                    val recipe = d.toObject(Recipe::class.java)
+                    if (recipe != null) {
+                        recipeList!!.add(recipe)
                     }
                 }
-            }
 
-            override fun onFailure(call: Call<SearchResponse>, t: Throwable) {
-                Log.d(TAG, "do not work")
-                Log.d(TAG, call.request().url.toString())
-                Log.d(TAG, t.localizedMessage)
-                Log.d(TAG, t.stackTrace.toString())
+                // Update the recyclerview with a new adapter with the recipes
+                val adapter = context?.let { RecipeRecyclerAdapter(it, recipeList!!) }
+                recyclerView.adapter = adapter
             }
-        })
+        }
 
         return root
     }
