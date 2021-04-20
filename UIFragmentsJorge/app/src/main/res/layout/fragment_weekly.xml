@@ -18,26 +18,20 @@
         app:layout_constraintTop_toTopOf="parent"
         android:text="Here are some of the best recipes from this week."
         />
-    
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recipe_recyclerview"
+
+    //Recycleview to show the API content
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/recipe_recyclerview"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/text_hereweekly"-->
+<!--        android:layout_marginTop="24dp"-->
+<!--        tools:listitem="@layout/fragment_view_recipe"/>-->
+    <ListView
+        android:id="@+id/listview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/text_hereweekly"
-        android:layout_marginTop="24dp"
-        tools:listitem="@layout/fragment_view_recipe"/>
-    <!--
-    <TextView
-        android:id="@+id/text_dashboard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />-->
-</androidx.constraintlayout.widget.ConstraintLayout>
+        />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
