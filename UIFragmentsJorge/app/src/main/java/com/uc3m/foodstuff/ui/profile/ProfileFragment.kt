@@ -14,6 +14,7 @@ import com.uc3m.foodstuff.R
 import com.uc3m.foodstuff.fb.Recipe
 import com.uc3m.foodstuff.fb.RecipeRecyclerAdapter
 import com.uc3m.foodstuff.login.LoggedUserRepo
+import com.uc3m.foodstuff.login.LoginManager
 
 class ProfileFragment : Fragment() {
 
@@ -36,15 +37,23 @@ class ProfileFragment : Fragment() {
             textView.text = it
         })*/
 
+        // ---------------------------
         // Firebase recyclerview thing
+        // ---------------------------
+
+        // Get the recyclerView element and set its layoutManager
         var recyclerView = root.findViewById<RecyclerView>(R.id.recipe_recyclerview)
-        recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(context)
 
+
         recipeList = arrayListOf<Recipe>()
+        // Attach a lambda to the firestore query so that the recipe list is filled each time
+        // the query results are updated
         val documentReference = firestore.collection("recipes")
         // TODO put username
-        val query = documentReference.whereEqualTo("user", "jorge")
+        val loggedUserRepo: LoggedUserRepo? = context?.let { LoggedUserRepo(it) }
+        val query = documentReference.whereEqualTo("user", loggedUserRepo?.getLoggedUser())
+
         query.addSnapshotListener { value, error ->
             if (value != null) {
                 for (d in value.documents) {
@@ -54,6 +63,7 @@ class ProfileFragment : Fragment() {
                     }
                 }
 
+                // Update the recyclerview with a new adapter with the recipes
                 val adapter = context?.let { RecipeRecyclerAdapter(it, recipeList!!) }
                 recyclerView.adapter = adapter
             }
