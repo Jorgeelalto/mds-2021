@@ -136,23 +136,25 @@
     <EditText
         android:id="@+id/Ingredients"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="100dp"
         android:layout_margin="16dp"
         android:layout_marginTop="16dp"
-        android:hint="Add Ingredients"
+        android:hint="Add ingredients"
         android:textSize="16dp"
         app:layout_constraintTop_toBottomOf="@id/time_edit"
         tools:ignore="MissingConstraints"
+        android:gravity="top"
         tools:layout_editor_absoluteX="18dp" />
 
 
     <EditText
-        android:id="@+id/RecipeStep"
+        android:id="@+id/instructions"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="100dp"
         app:layout_constraintTop_toBottomOf="@id/Ingredients"
         android:layout_margin="16dp"
-        android:hint="Recipe Steps" />
+        android:gravity="top"
+        android:hint="Recipe steps" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
