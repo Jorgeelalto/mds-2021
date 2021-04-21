@@ -5,11 +5,13 @@ import com.uc3m.foodstuff.MainActivity
 import android.content.Context
 import android.util.Log
 import android.view.Gravity
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.uc3m.foodstuff.R
 import java.math.BigInteger
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
@@ -84,14 +86,37 @@ class LoginManager(var context: Context) {
         return true
     }
 
-
-    fun login(username: String, password: String) {
-        val db = Firebase.firestore
-
+    fun register(username: String, password: String) {
         // Check if the data is correct
         if (!validate(username, password)) {
             return
         }
+
+        val db = Firebase.firestore
+
+        // Create a new user with the password
+        val user = hashMapOf("pass" to hash(password))
+
+        // Add a new document with a generated ID
+        db.collection("users").document(username).set(user)
+                .addOnSuccessListener { documentReference ->
+                    Log.d(TAG, "DocumentSnapshot added with ID: $documentReference")
+                    Toast.makeText(context, "User registered correctly, logging in...", Toast.LENGTH_SHORT).show()
+                    login(username, password)
+                }
+                .addOnFailureListener { e ->
+                    Log.w(TAG, "Error adding document", e)
+                    Toast.makeText(context, "User could not be registered", Toast.LENGTH_SHORT).show()
+                }
+    }
+
+    fun login(username: String, password: String) {
+        // Check if the data is correct
+        if (!validate(username, password)) {
+            return
+        }
+
+        val db = Firebase.firestore
 
         // Get the pass of the user with that username
         val user = db.collection("users").document(username)
@@ -99,16 +124,16 @@ class LoginManager(var context: Context) {
         user.get().addOnSuccessListener { document ->
             if (document == null) {
                 Log.d(TAG, "No such document")
-                Toast.makeText(context, "This user does not exist", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "User does not exist", Toast.LENGTH_SHORT).show()
             } else if (document.data == null) {
                 Log.d(TAG, "Document is empty")
-                Toast.makeText(context, "This user does not exist or its data is corrupt", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "User does not exist or its data is corrupt", Toast.LENGTH_SHORT).show()
             } else if (document.get("pass") == null) {
                 Log.d(TAG, "Document has no \"pass\" field")
-                Toast.makeText(context,"This user does not have a password and/or its data is corrupt", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context,"User does not have a password and/or its data is corrupt", Toast.LENGTH_SHORT).show()
             } else if (document.get("pass") == "") {
                 Log.d(TAG, "Document's \"pass\" field is empty")
-                Toast.makeText(context,"This user does not have a password and/or its data is corrupt", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context,"User does not have a password and/or its data is corrupt", Toast.LENGTH_SHORT).show()
             } else {
                 Log.d(TAG, "DocumentSnapshot data: ${document.data}")
                 pass = document.get("pass") as String

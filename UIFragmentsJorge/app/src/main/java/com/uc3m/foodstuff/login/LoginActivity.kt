@@ -17,15 +17,19 @@ class LoginActivity : AppCompatActivity() {
         val username = findViewById<EditText>(R.id.username)
         val password = findViewById<EditText>(R.id.password)
         val login = findViewById<Button>(R.id.login)
+        val register = findViewById<Button>(R.id.register)
         val loading = findViewById<ProgressBar>(R.id.loading)
 
         val loginManager = LoginManager(this)
 
-        login.isEnabled = true
         login.setOnClickListener {
             loading.visibility = View.VISIBLE
             loginManager.login(username.text.toString(), password.text.toString())
             loading.visibility = View.INVISIBLE
+        }
+
+        register.setOnClickListener {
+            loginManager.register(username.text.toString(), password.text.toString())
         }
     }
 }
