@@ -19,6 +19,7 @@ import java.security.NoSuchAlgorithmException
 const val TAG = "LoginManager"
 const val USER_LEN = 16
 const val PASS_LEN = 64
+const val MIN_PASS_LEN = 8
 
 class LoginManager(var context: Context) {
 
@@ -66,6 +67,11 @@ class LoginManager(var context: Context) {
         if (password.length > PASS_LEN) {
             Log.d(TAG, "Password longer than $PASS_LEN characters")
             Toast.makeText(context, "The password is too long (more than $PASS_LEN characters)", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if (password.length < 8) {
+            Log.d(TAG, "Password is shorter than $MIN_PASS_LEN characters")
+            Toast.makeText(context, "The password is too short (less than $MIN_PASS_LEN characters)", Toast.LENGTH_SHORT).show()
             return false
         }
 
