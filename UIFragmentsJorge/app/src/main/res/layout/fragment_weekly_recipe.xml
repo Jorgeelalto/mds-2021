@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:textSize="24sp"
             android:textColor="@color/gray1"
-            android:text="Recipe name"
+            android:text="@string/recipe_name"
             app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:textColor="@color/gray2"
-            android:text="1 hour"
+            android:text="@string/_1_hour"
             app:layout_constraintTop_toBottomOf="@id/recipe_name"
             android:layout_marginTop="4dp"/>
         
@@ -35,7 +35,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             app:layout_constraintTop_toBottomOf="@+id/recipe_time"
-            android:scaleType="fitXY"/>
+            android:scaleType="fitXY"
+            android:contentDescription="@string/recipe_image" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,11 +11,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:gravity="left"
+        android:gravity="start"
         android:layout_marginTop="0px"
         android:textSize="30sp"
         app:layout_constraintTop_toTopOf="parent"
-        android:text="Hello, "
+        android:text="@string/hello"
         />
 
     <TextView
@@ -23,12 +23,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:gravity="left"
+        android:gravity="start"
         android:layout_marginTop="0px"
         android:textSize="18sp"
         android:textColor="@color/gray1"
         app:layout_constraintTop_toBottomOf="@id/text_username"
-        android:text="Here you have your recipes."
+        android:text="@string/here_you_have_your_recipes"
         />
 
     <androidx.recyclerview.widget.RecyclerView
