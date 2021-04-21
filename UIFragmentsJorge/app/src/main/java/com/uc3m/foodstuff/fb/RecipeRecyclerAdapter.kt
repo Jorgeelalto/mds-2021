@@ -1,12 +1,18 @@
 package com.uc3m.foodstuff.fb
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.uc3m.foodstuff.MainActivity
 import com.uc3m.foodstuff.R
+import com.uc3m.foodstuff.ui.showrecipe.ShowRecipeActivity
+import java.io.Serializable
 
 class RecipeRecyclerAdapter(
         val context: Context,
@@ -14,6 +20,14 @@ class RecipeRecyclerAdapter(
     : RecyclerView.Adapter<RecipeRecyclerAdapter.Holder>() {
 
     override fun onBindViewHolder(holder: RecipeRecyclerAdapter.Holder, position: Int) {
+        holder.itemView.setOnClickListener {view ->
+            // Open show recipe activity
+            val recipe = RecipeList[position]
+            val intent = Intent(context, ShowRecipeActivity::class.java)
+            intent.putExtra("recipe", recipe as Serializable)
+            ContextCompat.startActivity(context, intent, null)
+            Toast.makeText(context, "T O S T A D A - ${recipe.name}", Toast.LENGTH_SHORT).show()
+        }
         holder.bind(RecipeList[position], context)
     }
 
@@ -31,28 +45,10 @@ class RecipeRecyclerAdapter(
         private val recipeTime = view?.findViewById<TextView>(R.id.recipe_time)
 
         fun bind(recipe: Recipe, context: Context) {
+
             // Set the recipe name
             recipeName?.text = recipe.name
-            // Set the recipe time. We can do nicer things than putting just the number:
-            var hours = recipe.time.toInt()
-            var min = recipe.time
-            while (min > 1) min -= 1
-            min *= 60
-            var minutes = min.toInt()
-            if (minutes == 60) {
-                minutes = 0
-                hours += 1
-            }
-            // Print the numbers into a nice string
-            if (hours == 0) {
-                recipeTime?.text = "$minutes minutes"
-            } else if (minutes == 0) {
-                if (hours == 1) recipeTime?.text = "$hours hour"
-                else recipeTime?.text = "$hours hours"
-            } else {
-                if (hours == 1) recipeTime?.text = "$hours hour and $minutes minutes"
-                else recipeTime?.text = "$hours hours and $minutes minutes"
-            }
+            recipeTime?.text = recipe.timeToString(recipe.time)
         }
     }
 }

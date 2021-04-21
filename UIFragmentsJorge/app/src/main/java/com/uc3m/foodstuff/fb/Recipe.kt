@@ -6,6 +6,7 @@ import android.widget.Toast
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.uc3m.foodstuff.login.TAG
+import java.io.Serializable
 
 data class Recipe (
         var user: String = "",
@@ -20,4 +21,27 @@ data class Recipe (
         var time: Float = 0.0f,
         var ingredients: String = "",
         var instructions: String = ""
-)
+) : Serializable {
+    fun timeToString(time: Float): String {
+        // Set the recipe time. We can do nicer things than putting just the number:
+        var hours = time.toInt()
+        var min = time
+        while (min > 1) min -= 1
+        min *= 60
+        var minutes = min.toInt()
+        if (minutes == 60) {
+            minutes = 0
+            hours += 1
+        }
+        // Print the numbers into a nice string
+        if (hours == 0) {
+            return "$minutes minutes"
+        } else if (minutes == 0) {
+            if (hours == 1) return "$hours hour"
+            else return "$hours hours"
+        } else {
+            if (hours == 1) return "$hours hour and $minutes minutes"
+            else return "$hours hours and $minutes minutes"
+        }
+    }
+}
