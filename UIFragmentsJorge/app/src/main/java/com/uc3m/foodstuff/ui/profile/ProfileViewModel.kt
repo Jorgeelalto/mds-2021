@@ -11,7 +11,7 @@ class ProfileViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
 
-        value = "Hello, Username."
+        value = "Hello, "
     }
     val text: LiveData<String> = _text
 }

@@ -31,8 +31,28 @@ class RecipeRecyclerAdapter(
         private val recipeTime = view?.findViewById<TextView>(R.id.recipe_time)
 
         fun bind(recipe: Recipe, context: Context) {
+            // Set the recipe name
             recipeName?.text = recipe.name
-            recipeTime?.text = recipe.time.toString()
+            // Set the recipe time. We can do nicer things than putting just the number:
+            var hours = recipe.time.toInt()
+            var min = recipe.time
+            while (min > 1) min -= 1
+            min *= 60
+            var minutes = min.toInt()
+            if (minutes == 60) {
+                minutes = 0
+                hours += 1
+            }
+            // Print the numbers into a nice string
+            if (hours == 0) {
+                recipeTime?.text = "$minutes minutes"
+            } else if (minutes == 0) {
+                if (hours == 1) recipeTime?.text = "$hours hour"
+                else recipeTime?.text = "$hours hours"
+            } else {
+                if (hours == 1) recipeTime?.text = "$hours hour and $minutes minutes"
+                else recipeTime?.text = "$hours hours and $minutes minutes"
+            }
         }
     }
 }
