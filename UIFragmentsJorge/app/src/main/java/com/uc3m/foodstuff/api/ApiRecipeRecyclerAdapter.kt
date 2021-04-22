@@ -51,16 +51,15 @@ class ApiRecipeRecyclerAdapter(
         private val recipeImg = view?.findViewById<ImageView>(R.id.recipe_img)
 
         fun bind(recipe: ApiRecipe, context: Context) {
-            // TODO make nice
             recipeName?.text = recipe.title
             recipeTime?.text = recipe.publisher
 
             try {
                 var imageUrl = recipe.image_url
-                Log.d(TAG, imageUrl)
                 // Force HTTPS
                 if ("https" !in imageUrl) imageUrl = imageUrl.replace("http", "https")
-                Picasso.get().load(imageUrl).into(recipeImg);
+                Log.d(TAG, imageUrl)
+                Picasso.get().load(imageUrl).into(recipeImg)
             } catch (e: Exception /*t: Throwable*/) {
                 if (e.localizedMessage != null) Log.d(TAG, e.localizedMessage.toString())
                 Log.d(TAG, e.cause.toString())
