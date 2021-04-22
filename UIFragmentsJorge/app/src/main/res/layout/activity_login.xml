@@ -9,50 +9,110 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".login.LoginActivity">
+    tools:context=".login.LoginActivity"
+    tools:ignore="ExtraText">
 
-    <EditText
-        android:id="@+id/username"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="96dp"
-        android:layout_marginEnd="24dp"
-        android:hint="@string/prompt_email"
-        android:inputType="textPersonName"
-        android:selectAllOnFocus="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    //https://www.pinclipart.com/pindetail/biRwxm_cooking-comments-transparent-cooking-icons-png-clipart/
+    //https://bloesem.blogs.com/bloesem/2015/07/link-love-1.html
+    <ImageView
+        android:id="@+id/loginBackground"
+        android:layout_width="514dp"
+        android:layout_height="848dp"
+        android:background="@null"
+        android:src="@drawable/loginbackground"
+        app:layout_constraintBottom="@+id/container"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="-62dp"
+        tools:layout_editor_absoluteY="-59dp" />
+
+    <ImageView
+        android:id="@+id/logoImage"
+        android:layout_width="201dp"
+        android:layout_height="232dp"
+        android:background="@null"
+        android:src="@drawable/cheflogo"
+        app:layout_constraintBottom="@+id/container"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="89dp"
+        tools:layout_editor_absoluteY="83dp" />
 
     <EditText
         android:id="@+id/password"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="24dp"
+        android:background="@color/white"
         android:hint="@string/prompt_password"
         android:imeActionLabel="@string/action_login"
         android:imeOptions="actionDone"
         android:inputType="textPassword"
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username" />
+        app:layout_constraintTop_toBottomOf="@+id/username"
+        />
 
     <Button
+        android:id="@+id/register"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:id="@+id/register"
+        android:layout_margin="24dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/main_3"
         android:text="@string/action_register"
+        android:textColor="@color/gray2"
+        app:layout_constraintHorizontal_bias="0.375"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@id/password"
+        app:layout_constraintTop_toBottomOf="@id/password" />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="368dp"
+        android:layout_marginEnd="24dp"
+        android:background="@color/white"
+        android:hint="@string/prompt_email"
+        android:inputType="textPersonName"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_margin="24dp"
-        android:backgroundTint="@color/main_3"
-        android:textColor="@color/gray2"
-        />
+        android:layout_marginTop="8dp"
+        android:text="@string/action_login"
+        app:layout_constraintHorizontal_bias="0.126"
+        app:layout_constraintLeft_toRightOf="@+id/guideline"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/password" />
+
+    <TextView
+        android:id="@+id/LoginTitle"
+        android:layout_width="301dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="224dp"
+        android:elegantTextHeight="true"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="Food Stuff"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textColorHighlight="@color/black"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="@+id/logoImage"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="40dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -60,17 +120,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5" />
-
-    <Button
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/login"
-        android:text="@string/action_login"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@id/password"
-        android:layout_margin="24dp"
-        />
 
     <ProgressBar
         android:id="@+id/loading"
