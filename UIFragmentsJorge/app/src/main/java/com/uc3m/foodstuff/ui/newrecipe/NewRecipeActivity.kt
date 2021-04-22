@@ -2,21 +2,30 @@ package com.uc3m.foodstuff.ui.newrecipe
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
+import android.util.Base64
 import android.util.Log
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.Toast
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.net.toUri
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.uc3m.foodstuff.MainActivity
 import com.uc3m.foodstuff.R
 import com.uc3m.foodstuff.fb.Recipe
 import com.uc3m.foodstuff.login.LoggedUserRepo
+import java.io.ByteArrayOutputStream
+import java.io.InputStream
+
 
 const val TAG = "NewRecipeActivity"
 const val MAX_NAME_LEN = 50
@@ -28,6 +37,8 @@ val SML_REGEX = Regex("[a-zA-Z0-9- '\"%()+&]+")
 
 class NewRecipeActivity : AppCompatActivity() {
 
+    private var imageUri: Uri? = null
+
     private fun uploadRecipe(context: Context, recipe: Recipe) {
         // Check if the data is correct
         if (!validate(recipe)) {
@@ -35,6 +46,24 @@ class NewRecipeActivity : AppCompatActivity() {
         }
 
         val db = Firebase.firestore
+
+        // TODO turn the image into a base64 bitmap
+        if (recipe.image.isNotBlank()) {
+            try {
+                val imageStream: InputStream? =
+                    contentResolver.openInputStream(recipe.image.toUri())
+                var bitmap = BitmapFactory.decodeStream(imageStream)
+                bitmap = resize(bitmap, 400, 400)
+                val baos = ByteArrayOutputStream()
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 70, baos)
+                val b: ByteArray = baos.toByteArray()
+                recipe.image = Base64.encodeToString(b, Base64.DEFAULT)
+            } catch (e: Exception) {
+                Log.d(TAG, "Could not turn image from gallery into a base64 string")
+                e.message?.let { Log.d(TAG, it) }
+                Log.d(TAG, e.cause.toString())
+            }
+        }
 
         // Create a new user with the password
         val fbrecipe = hashMapOf(
@@ -49,7 +78,8 @@ class NewRecipeActivity : AppCompatActivity() {
                 "dairy_free" to recipe.dairy_free,
                 "time" to recipe.time,
                 "ingredients" to recipe.ingredients,
-                "instructions" to recipe.instructions
+                "instructions" to recipe.instructions,
+                "image" to recipe.image
         )
 
         // Add a new document with a generated ID
@@ -73,6 +103,13 @@ class NewRecipeActivity : AppCompatActivity() {
 
         val loggedUserRepo by lazy { LoggedUserRepo(this) }
 
+        // Load image button
+        findViewById<FloatingActionButton>(R.id.fab_image).setOnClickListener { view ->
+            val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+            startActivityForResult(gallery, 100)
+        }
+
+        // Submit button
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
             val recipe = Recipe()
 
@@ -90,8 +127,18 @@ class NewRecipeActivity : AppCompatActivity() {
             else recipe.time = ttime
             recipe.ingredients = findViewById<EditText>(R.id.ingredients_edit).text.toString()
             recipe.instructions = findViewById<EditText>(R.id.instructions_edit).text.toString()
+            recipe.image = imageUri.toString()
 
             uploadRecipe(this, recipe)
+        }
+    }
+
+    // For the gallery image selection
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == RESULT_OK && requestCode == 100) {
+            imageUri = data?.data
+            //imageView.setImageURI(imageUri)
         }
     }
 
@@ -188,5 +235,27 @@ class NewRecipeActivity : AppCompatActivity() {
         }
         return if (str.isNotBlank()) str.substring(IntRange(0, str.length - 3))
         else str
+    }
+
+
+    private fun resize(image: Bitmap, maxWidth: Int, maxHeight: Int): Bitmap {
+        var image = image
+        return if (maxHeight > 0 && maxWidth > 0) {
+            val width = image.width
+            val height = image.height
+            val ratioBitmap = width.toFloat() / height.toFloat()
+            val ratioMax = maxWidth.toFloat() / maxHeight.toFloat()
+            var finalWidth = maxWidth
+            var finalHeight = maxHeight
+            if (ratioMax > ratioBitmap) {
+                finalWidth = (maxHeight.toFloat() * ratioBitmap).toInt()
+            } else {
+                finalHeight = (maxWidth.toFloat() / ratioBitmap).toInt()
+            }
+            image = Bitmap.createScaledBitmap(image, finalWidth, finalHeight, true)
+            image
+        } else {
+            image
+        }
     }
 }
