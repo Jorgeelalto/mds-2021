@@ -34,4 +34,9 @@
     <string name="recipe_image">Recipe image</string>
     <string name="some_recipes">Here are some recipes to get you started.</string>
     <string name="recipe_name">Recipe name</string>
+    <string name="background_image">Background image</string>
+    <string name="food_stuff_logo">Food Stuff logo</string>
+    <string name="food_stuff">Food Stuff</string>
+    <string name="add_image_from_gallery">Add image from gallery</string>
+    <string name="submit_recipe">Submit recipe</string>
 </resources>

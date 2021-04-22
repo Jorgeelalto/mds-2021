@@ -3,8 +3,10 @@
     package="com.uc3m.foodstuff">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
+
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -20,6 +22,10 @@
             android:label="Recipe details"
             android:theme="@style/Theme.UIFragmentsJorge.NoActionBar" />
         <activity
+            android:name="com.uc3m.foodstuff.ui.webrecipe.WebRecipeActivity"
+            android:label="Recipe result"
+            android:theme="@style/Theme.UIFragmentsJorge.NoActionBar" />
+        <activity
             android:name="com.uc3m.foodstuff.MainActivity"
             android:label="@string/app_name" />
         <activity
@@ -30,6 +36,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

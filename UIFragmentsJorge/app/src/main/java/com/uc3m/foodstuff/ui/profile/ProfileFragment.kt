@@ -32,9 +32,6 @@ class ProfileFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_profile, container, false)
         val textView: TextView = root.findViewById(R.id.text_username)
         textView.text = "Hello, ${loggedUserRepo.getLoggedUser()}."
-        /*profileViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })*/
 
         // ---------------------------
         // Firebase recyclerview thing
@@ -56,7 +53,7 @@ class ProfileFragment : Fragment() {
                 for (d in value.documents) {
                     val recipe = d.toObject(Recipe::class.java)
                     if (recipe != null) {
-                        recipeList!!.add(recipe)
+                        recipeList.add(recipe)
                     }
                 }
 

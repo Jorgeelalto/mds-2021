@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="main_3">#E1C391</color>
-    <color name="main_2">#705446</color>
+    <color name="main_3">#F66900</color>
+    <color name="main_2">#FFBF00</color>
     <color name="main_1">#3C3431</color>
     <color name="black">#070707</color>
     <color name="gray1">#272727</color>
     <color name="gray2">#454545</color>
     <color name="gray3">#636363</color>
+    <color name="gray4">#BBB</color>
     <color name="white">#F7F7F7</color>
 </resources>
+
+<!--<color name="main_3">#E1C391</color>
+    <color name="main_2">#705446</color>
+    <color name="main_1">#3C3431</color>-->

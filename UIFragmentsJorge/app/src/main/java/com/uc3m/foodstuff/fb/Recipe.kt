@@ -14,7 +14,8 @@ data class Recipe (
         var dairy_free: Boolean = false,
         var time: Float = 0.0f,
         var ingredients: String = "",
-        var instructions: String = ""
+        var instructions: String = "",
+        var image: String = ""
 ) : Serializable {
 
     fun timeToString(time: Float): String {
@@ -29,14 +30,14 @@ data class Recipe (
             hours += 1
         }
         // Print the numbers into a nice string
-        if (hours == 0) {
-            return "$minutes minutes"
+        return if (hours == 0) {
+            "$minutes minutes"
         } else if (minutes == 0) {
-            if (hours == 1) return "$hours hour"
-            else return "$hours hours"
+            if (hours == 1) "$hours hour"
+            else "$hours hours"
         } else {
-            if (hours == 1) return "$hours hour and $minutes minutes"
-            else return "$hours hours and $minutes minutes"
+            if (hours == 1) "$hours hour and $minutes minutes"
+            else "$hours hours and $minutes minutes"
         }
     }
 }
