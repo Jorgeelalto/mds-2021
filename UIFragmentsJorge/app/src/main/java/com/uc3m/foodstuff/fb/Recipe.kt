@@ -1,11 +1,5 @@
 package com.uc3m.foodstuff.fb
 
-import android.content.Context
-import android.util.Log
-import android.widget.Toast
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-import com.uc3m.foodstuff.login.TAG
 import java.io.Serializable
 
 data class Recipe (

@@ -74,7 +74,7 @@ class NewRecipeActivity : AppCompatActivity() {
         val loggedUserRepo by lazy { LoggedUserRepo(this) }
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
-            val recipe: Recipe = Recipe()
+            val recipe = Recipe()
 
             recipe.user = loggedUserRepo.getLoggedUser()
             recipe.name = findViewById<EditText>(R.id.name_edit).text.toString()
@@ -92,8 +92,6 @@ class NewRecipeActivity : AppCompatActivity() {
             recipe.instructions = findViewById<EditText>(R.id.instructions_edit).text.toString()
 
             uploadRecipe(this, recipe)
-            /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()*/
         }
     }
 
@@ -182,13 +180,13 @@ class NewRecipeActivity : AppCompatActivity() {
 
     private fun getForbidden(string: String, regex: Regex): String {
         val list = regex.split(string)
-        var string = ""
+        var str = ""
         for (l in list) {
             if (l.isBlank().not()) {
-                string += l.slice(IntRange(0, 0)) + ", "
+                str += l.slice(IntRange(0, 0)) + ", "
             }
         }
-        return if (string.isNotBlank()) string.substring(IntRange(0, string.length - 3))
-        else string
+        return if (str.isNotBlank()) str.substring(IntRange(0, str.length - 3))
+        else str
     }
 }

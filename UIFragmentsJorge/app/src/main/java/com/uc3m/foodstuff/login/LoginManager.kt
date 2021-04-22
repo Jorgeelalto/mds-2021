@@ -4,14 +4,10 @@ import android.content.Intent
 import com.uc3m.foodstuff.MainActivity
 import android.content.Context
 import android.util.Log
-import android.view.Gravity
-import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
-import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.uc3m.foodstuff.R
 import java.math.BigInteger
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
@@ -24,7 +20,6 @@ const val MIN_PASS_LEN = 8
 class LoginManager(var context: Context) {
 
     private val loggedUserRepo: LoggedUserRepo = LoggedUserRepo(context)
-    //private val sharedPreferences = context.getSharedPreferences("com.uc3m.foodstuff.PREF", Context.MODE_PRIVATE)
 
     private var pass: String = ""
 

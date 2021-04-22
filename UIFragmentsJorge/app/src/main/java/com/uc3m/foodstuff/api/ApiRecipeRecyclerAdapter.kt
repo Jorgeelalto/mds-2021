@@ -47,7 +47,7 @@ class ApiRecipeRecyclerAdapter(
                 val bmp = BitmapFactory.decodeStream(URL(recipe.image_url).openStream())
                 recipeImg?.setImageBitmap(bmp)
             } catch (t: Throwable) {
-                Log.d(TAG, t.localizedMessage)
+                if (t.localizedMessage != null) Log.d(TAG, t.localizedMessage)
                 Log.d(TAG, t.stackTrace.toString())
             }
         }

@@ -6,10 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.uc3m.foodstuff.MainActivity
 import com.uc3m.foodstuff.R
 import com.uc3m.foodstuff.ui.showrecipe.ShowRecipeActivity
 import java.io.Serializable
@@ -20,13 +18,12 @@ class RecipeRecyclerAdapter(
     : RecyclerView.Adapter<RecipeRecyclerAdapter.Holder>() {
 
     override fun onBindViewHolder(holder: RecipeRecyclerAdapter.Holder, position: Int) {
-        holder.itemView.setOnClickListener {view ->
+        holder.itemView.setOnClickListener {
             // Open show recipe activity
             val recipe = RecipeList[position]
             val intent = Intent(context, ShowRecipeActivity::class.java)
             intent.putExtra("recipe", recipe as Serializable)
             ContextCompat.startActivity(context, intent, null)
-            Toast.makeText(context, "T O S T A D A - ${recipe.name}", Toast.LENGTH_SHORT).show()
         }
         holder.bind(RecipeList[position], context)
     }
