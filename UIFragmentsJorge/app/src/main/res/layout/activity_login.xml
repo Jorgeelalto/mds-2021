@@ -12,16 +12,12 @@
     tools:context=".login.LoginActivity"
     tools:ignore="ExtraText">
 
-<<<<<<< HEAD
-    //https://www.pinclipart.com/pindetail/biRwxm_cooking-comments-transparent-cooking-icons-png-clipart/
-    //https://bloesem.blogs.com/bloesem/2015/07/link-love-1.html
     <ImageView
         android:id="@+id/loginBackground"
         android:layout_width="514dp"
         android:layout_height="848dp"
         android:background="@null"
         android:src="@drawable/loginbackground"
-        app:layout_constraintBottom="@+id/container"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="-62dp"
         tools:layout_editor_absoluteY="-59dp" />
@@ -32,26 +28,9 @@
         android:layout_height="232dp"
         android:background="@null"
         android:src="@drawable/cheflogo"
-        app:layout_constraintBottom="@+id/container"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="89dp"
-        tools:layout_editor_absoluteY="83dp" />
-=======
-    <EditText
-        android:id="@+id/username"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="96dp"
-        android:layout_marginEnd="24dp"
-        android:hint="@string/prompt_email"
-        android:inputType="textPersonName"
-        android:selectAllOnFocus="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:autofillHints="Username" />
->>>>>>> da888ba37ba7ca3502316baf4dfc44ac5954330b
+        tools:layout_editor_absoluteY="83dp"/>
 
     <EditText
         android:id="@+id/password"
@@ -70,11 +49,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username"
-<<<<<<< HEAD
-        />
-=======
         android:autofillHints="Password" />
->>>>>>> da888ba37ba7ca3502316baf4dfc44ac5954330b
+
 
     <Button
         android:id="@+id/register"
