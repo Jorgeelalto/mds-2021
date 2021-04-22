@@ -1,7 +1,11 @@
 package com.uc3m.foodstuff.ui.showrecipe
 
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Base64
+import android.util.Log
 import android.widget.CheckBox
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.uc3m.foodstuff.R
@@ -11,7 +15,7 @@ class ShowRecipeActivity  : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_show_recipe)
+        setContentView(R.layout.activity_show_recipe)
         setSupportActionBar(findViewById(R.id.toolbar))
 
         // Get the recipe from the intent
@@ -29,5 +33,13 @@ class ShowRecipeActivity  : AppCompatActivity() {
         findViewById<TextView>(R.id.RecipeTime).text = recipe.timeToString(recipe.time)
         findViewById<TextView>(R.id.IngredientsRecipe).text = recipe.ingredients
         findViewById<TextView>(R.id.RecipeSteps).text = recipe.instructions
+
+        // Set the image
+        if (recipe.image.isNotBlank()) {
+            val decodedByte = Base64.decode(recipe.image, Base64.DEFAULT)
+            val bitmap = BitmapFactory.decodeByteArray(decodedByte, 0, decodedByte.size)
+            Log.d("ShowRecipeActivity", recipe.image.substring(IntRange(0, 12)))
+            findViewById<ImageView>(R.id.RecipeImage).setImageBitmap(bitmap)
+        }
     }
 }
