@@ -1,7 +1,6 @@
 package com.uc3m.foodstuff.ui.weekly
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,21 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
 import com.uc3m.foodstuff.R
-import com.uc3m.foodstuff.api.ApiRecipe
-import com.uc3m.foodstuff.api.ApiRecipeRecyclerAdapter
-import com.uc3m.foodstuff.api.ApiService
-import com.uc3m.foodstuff.api.SearchResponse
 import com.uc3m.foodstuff.fb.Recipe
 import com.uc3m.foodstuff.fb.RecipeRecyclerAdapter
-import com.uc3m.foodstuff.login.LoggedUserRepo
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-
-const val BASE_URL = "https://forkify-api.herokuapp.com/api/"
-const val TAG = "WeeklyFragment"
 
 
 class WeeklyFragment : Fragment() {
@@ -68,12 +54,12 @@ class WeeklyFragment : Fragment() {
                 for (d in value.documents) {
                     val recipe = d.toObject(Recipe::class.java)
                     if (recipe != null) {
-                        recipeList!!.add(recipe)
+                        recipeList.add(recipe)
                     }
                 }
 
                 // Update the recyclerview with a new adapter with the recipes
-                val adapter = context?.let { RecipeRecyclerAdapter(it, recipeList!!) }
+                val adapter = context?.let { RecipeRecyclerAdapter(it, recipeList) }
                 recyclerView.adapter = adapter
             }
         }

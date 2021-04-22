@@ -12,11 +12,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:layout_marginHorizontal="16dp"
-        android:gravity="left"
+        android:gravity="start"
         android:textSize="22sp"
         android:textColor="@color/gray2"
         app:layout_constraintTop_toTopOf="parent"
-        android:text="Here are some of the best recipes from this week."
+        android:text="@string/some_recipes"
         />
     
     <androidx.recyclerview.widget.RecyclerView

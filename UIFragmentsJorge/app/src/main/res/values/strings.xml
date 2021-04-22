@@ -1,24 +1,37 @@
 <resources>
-    <string name="app_name">UI Fragments</string>
+    <string name="app_name">Food Stuff</string>
     <string name="title_profile">Profile</string>
     <string name="title_weekly">Weekly</string>
     <string name="title_search">Search</string>
-    <string name="title_activity_login">Sign in</string>
-    <string name="prompt_email">Email</string>
+    <string name="title_activity_login">Log in</string>
+    <string name="prompt_email">Username</string>
     <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
+    <string name="action_login">Log in</string>
     <string name="welcome">"Welcome!"</string>
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must have more than 5 characters</string>
-    <string name="login_failed">"Login failed"</string>
     <string name="title_activity_new_recipe">New recipe</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="action_register">Register</string>
+    <string name="describe_your_recipe">Describe your recipe.</string>
+    <string name="name">Name</string>
+    <string name="description">Description</string>
+    <string name="non_vegetarian">Non-vegetarian</string>
+    <string name="vegetarian">Vegetarian</string>
+    <string name="vegan">Vegan</string>
+    <string name="gluten_free">Gluten-free</string>
+    <string name="cheap">Cheap</string>
+    <string name="dairy_free">Dairy-free</string>
+    <string name="preparation_time">Preparation time in hours (like \'1.5\')</string>
+    <string name="add_ingredients">Add ingredients</string>
+    <string name="recipe_steps">Recipe steps</string>
+    <string name="create_a_new_recipe">Create a new recipe</string>
+    <string name="hello">Hello,</string>
+    <string name="here_you_have_your_recipes">Here you have your recipes.</string>
+    <string name="_1_hour">1 hour</string>
+    <string name="recipe_image">Recipe image</string>
+    <string name="some_recipes">Here are some recipes to get you started.</string>
+    <string name="recipe_name">Recipe name</string>
 </resources>

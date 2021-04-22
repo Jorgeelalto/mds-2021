@@ -6,9 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -39,10 +37,6 @@ class SearchFragment : Fragment() {
         searchViewModel =
                 ViewModelProvider(this).get(SearchViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_search, container, false)
-        //val textView: TextView = root.findViewById(R.id.text_notifications)
-        //searchViewModel.text.observe(viewLifecycleOwner, Observer {
-        //    textView.text = it
-        //})
 
         // ----------
         // API things
@@ -53,7 +47,7 @@ class SearchFragment : Fragment() {
 
         recipeList = arrayListOf()
         val retrofit = Retrofit.Builder()
-            .baseUrl(com.uc3m.foodstuff.ui.weekly.BASE_URL)
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         val service = retrofit.create(ApiService::class.java)
@@ -72,7 +66,7 @@ class SearchFragment : Fragment() {
                                 for (r in search.recipes) {
                                     recipeList.add(r)
                                 }
-                                val adapter = context?.let { ApiRecipeRecyclerAdapter(it, recipeList!!) }
+                                val adapter = context?.let { ApiRecipeRecyclerAdapter(it, recipeList) }
                                 recyclerView.adapter = adapter
                             }
                         }
@@ -81,7 +75,7 @@ class SearchFragment : Fragment() {
                     override fun onFailure(call: Call<SearchResponse>, t: Throwable) {
                         Log.d(TAG, "do not work")
                         Log.d(TAG, call.request().url.toString())
-                        Log.d(TAG, t.localizedMessage)
+                        if (t.localizedMessage != null) Log.d(TAG, t.localizedMessage)
                         Log.d(TAG, t.stackTrace.toString())
                     }
                 })
