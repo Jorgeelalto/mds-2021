@@ -23,9 +23,9 @@ class ShowRecipeActivity  : AppCompatActivity() {
             recipe.vegetarian -> findViewById<TextView>(R.id.VegetarianRecipe).text = "Vegetarian"
             else -> findViewById<TextView>(R.id.VegetarianRecipe).text = "Non-vegetarian"
         }
-        findViewById<CheckBox>(R.id.gluten_freeRecipe).isEnabled = recipe.gluten_free
-        findViewById<CheckBox>(R.id.cheapRecipe).isEnabled = recipe.cheap
-        findViewById<CheckBox>(R.id.dairy_freeRecipe).isEnabled = recipe.dairy_free
+        findViewById<CheckBox>(R.id.gluten_freeRecipe).isChecked = recipe.gluten_free
+        findViewById<CheckBox>(R.id.cheapRecipe).isChecked = recipe.cheap
+        findViewById<CheckBox>(R.id.dairy_freeRecipe).isChecked = recipe.dairy_free
         findViewById<TextView>(R.id.RecipeTime).text = recipe.timeToString(recipe.time)
         findViewById<TextView>(R.id.IngredientsRecipe).text = recipe.ingredients
         findViewById<TextView>(R.id.RecipeSteps).text = recipe.instructions
