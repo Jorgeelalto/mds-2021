@@ -34,7 +34,7 @@ class ApiRecipeRecyclerAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ApiRecipeRecyclerAdapter.Holder {
-        val view = LayoutInflater.from(context).inflate(R.layout.fragment_weekly_recipe, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.fragment_search_recipe, parent, false)
         return Holder(view)
     }
 
@@ -45,7 +45,7 @@ class ApiRecipeRecyclerAdapter(
     inner class Holder(view: View?) : RecyclerView.ViewHolder(view!!) {
         private val recipeName = view?.findViewById<TextView>(R.id.recipe_name)
         private val recipeTime = view?.findViewById<TextView>(R.id.recipe_time)
-        private val recipeImg = view?.findViewById<ImageView>(R.id.recipe_img)
+        private val recipeImg =  view?.findViewById<ImageView>(R.id.recipe_img)
 
         fun bind(recipe: ApiRecipe, context: Context) {
             recipeName?.text = recipe.title
@@ -58,6 +58,7 @@ class ApiRecipeRecyclerAdapter(
                 Log.d(TAG, imageUrl)
                 Picasso.get().load(imageUrl).into(recipeImg)
             } catch (e: Exception /*t: Throwable*/) {
+                Log.d(TAG, "Holia: " + recipeImg.toString())
                 if (e.localizedMessage != null) Log.d(TAG, e.localizedMessage.toString())
                 Log.d(TAG, e.cause.toString())
                 e.message?.let { Log.d(TAG, it) }

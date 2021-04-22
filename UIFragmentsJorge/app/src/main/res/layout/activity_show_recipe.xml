@@ -36,7 +36,8 @@
         android:id="@+id/RecipeImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scaleType="centerInside"
+        android:scaleType="fitCenter"
+        android:layout_margin="16dp"
         app:layout_constraintTop_toBottomOf="@id/RecipeName"
         android:contentDescription="Recipe image" />
 
