@@ -79,12 +79,12 @@ class NewRecipeActivity : AppCompatActivity() {
             recipe.user = loggedUserRepo.getLoggedUser()
             recipe.name = findViewById<EditText>(R.id.name_edit).text.toString()
             recipe.description = findViewById<EditText>(R.id.description_edit).text.toString()
-            recipe.non_vegetarian = findViewById<RadioButton>(R.id.radio_nonveggie).isEnabled
-            recipe.vegetarian = findViewById<RadioButton>(R.id.radio_vegetarian).isEnabled
-            recipe.vegan = findViewById<RadioButton>(R.id.radio_vegan).isEnabled
-            recipe.gluten_free = findViewById<CheckBox>(R.id.gluten_free).isEnabled
-            recipe.dairy_free = findViewById<CheckBox>(R.id.dairy_free).isEnabled
-            recipe.cheap = findViewById<CheckBox>(R.id.cheap).isEnabled
+            recipe.non_vegetarian = findViewById<RadioButton>(R.id.radio_nonveggie).isChecked
+            recipe.vegetarian = findViewById<RadioButton>(R.id.radio_vegetarian).isChecked
+            recipe.vegan = findViewById<RadioButton>(R.id.radio_vegan).isChecked
+            recipe.gluten_free = findViewById<CheckBox>(R.id.gluten_free).isChecked
+            recipe.dairy_free = findViewById<CheckBox>(R.id.dairy_free).isChecked
+            recipe.cheap = findViewById<CheckBox>(R.id.cheap).isChecked
             val ttime = findViewById<EditText>(R.id.time_edit).text.toString().toFloatOrNull()
             if (ttime == null) recipe.time = -1.0f
             else recipe.time = ttime
