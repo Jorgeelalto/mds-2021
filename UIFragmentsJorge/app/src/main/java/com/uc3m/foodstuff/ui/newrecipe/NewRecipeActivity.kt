@@ -19,6 +19,12 @@ import com.uc3m.foodstuff.fb.Recipe
 import com.uc3m.foodstuff.login.LoggedUserRepo
 
 const val TAG = "NewRecipeActivity"
+const val MAX_NAME_LEN = 50
+const val MAX_ING_LEN = 300
+const val MAX_INS_LEN = 500
+val BIG_REGEX = Regex("[a-zA-Z0-9- ,.'\"!%()+?&\\n]+")
+val SML_REGEX = Regex("[a-zA-Z0-9- '\"%()+&]+")
+
 
 class NewRecipeActivity : AppCompatActivity() {
 
@@ -50,12 +56,12 @@ class NewRecipeActivity : AppCompatActivity() {
         db.collection("recipes").add(fbrecipe)
                 .addOnSuccessListener { documentReference ->
                     Log.d(com.uc3m.foodstuff.login.TAG, "DocumentSnapshot added with ID: $documentReference")
-                    Toast.makeText(context, "Recipe submitted correctly", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Recipe submitted correctly", Toast.LENGTH_LONG).show()
                     ContextCompat.startActivity(this, Intent(this, MainActivity::class.java), null)
                 }
                 .addOnFailureListener { e ->
                     Log.w(com.uc3m.foodstuff.login.TAG, "Error adding document", e)
-                    Toast.makeText(context, "The recipe could not be submitted", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "The recipe could not be submitted", Toast.LENGTH_LONG).show()
                 }
 
     }
@@ -91,38 +97,98 @@ class NewRecipeActivity : AppCompatActivity() {
         }
     }
 
+
     private fun validate(recipe: Recipe): Boolean {
 
+        // Check whether several fields are blank or not
         if (recipe.user.isBlank()) {
             Log.d(TAG, "Recipe user is empty")
-            Toast.makeText(this, "The user data in the recipe is corrupt", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "The user data in the recipe is corrupt", Toast.LENGTH_LONG).show()
             return false
         }
         if (recipe.name.isBlank()) {
             Log.d(TAG, "Recipe name is empty")
-            Toast.makeText(this, "Recipe name is empty. Please specify a name", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Recipe name is empty. Please specify a name", Toast.LENGTH_LONG).show()
             return false
         }
         if (recipe.non_vegetarian.not() && recipe.vegetarian.not() && recipe.vegan.not()) {
             Log.d(TAG, "Recipe is not non-vegetarian, vegetarian nor vegan")
-            Toast.makeText(this, "Recipe is not non-vegetarian, vegetarian nor vegan. How could this happen?", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Recipe is not non-vegetarian, vegetarian nor vegan. How could this happen?", Toast.LENGTH_LONG).show()
             return false
         }
         if (recipe.time <= 0.0f) {
             Log.d(TAG, "Recipe has negative or zero time")
-            Toast.makeText(this, "Time is invalid. Please specify a correct preparation time (for example, 1.5)", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Time is invalid. Please specify a correct preparation time (for example, 1.5)", Toast.LENGTH_LONG).show()
             return false
         }
         if (recipe.ingredients.isBlank()) {
             Log.d(TAG, "Recipe ingredients is empty")
-            Toast.makeText(this, "There are no ingredients. You cannot cook nothing!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "There are no ingredients. You cannot cook nothing!", Toast.LENGTH_LONG).show()
             return false
         }
         if (recipe.instructions.isBlank()) {
             Log.d(TAG, "Recipe instructions is empty")
-            Toast.makeText(this, "You did not specify the preparation instructions", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "You did not specify the preparation instructions", Toast.LENGTH_LONG).show()
             return false
         }
+
+        // Check whether all text fields are free of weird characters
+        if (getForbidden(recipe.name, SML_REGEX).isNotBlank()) {
+            Log.d(TAG, "Recipe name does not match regex")
+            Toast.makeText(this, "Recipe name has characters that are not allowed. " +
+                    "Please remove these: ${getForbidden(recipe.name, SML_REGEX)}", Toast.LENGTH_LONG).show()
+            return false
+        }
+        if (getForbidden(recipe.description, BIG_REGEX).isNotBlank()) {
+            Log.d(TAG, "Recipe description does not match regex")
+            Toast.makeText(this, "Recipe description has characters that are not allowed. " +
+                    "Please remove these: ${getForbidden(recipe.description, SML_REGEX)}", Toast.LENGTH_LONG).show()
+            return false
+        }
+        if (getForbidden(recipe.ingredients, BIG_REGEX).isNotBlank()) {
+            Log.d(TAG, "Recipe ingredients does not match regex")
+            Toast.makeText(this, "The ingredients field has characters that are not allowed. " +
+                    "Please remove these: ${getForbidden(recipe.ingredients, BIG_REGEX)}", Toast.LENGTH_LONG).show()
+            return false
+        }
+        if (getForbidden(recipe.instructions, BIG_REGEX).isNotBlank()) {
+            Log.d(TAG, "Recipe steps does not match regex")
+            Toast.makeText(this, "The recipe steps field has characters that are not allowed. " +
+                    "Please remove these: ${getForbidden(recipe.instructions, BIG_REGEX)}", Toast.LENGTH_LONG).show()
+            return false
+        }
+
+        // Check whether the fields length is valid
+        if (recipe.name.length > MAX_NAME_LEN) {
+            Log.d(TAG, "Recipe name is too long")
+            Toast.makeText(this, "Recipe name too long (more than 50 characters).", Toast.LENGTH_LONG).show()
+            return false
+        }
+        if (recipe.ingredients.length > MAX_ING_LEN) {
+            Log.d(TAG, "Ingredients text is too long")
+            Toast.makeText(this, "You wrote too much in the ingredients field. Please keep it at $MAX_ING_LEN or less", Toast.LENGTH_LONG).show()
+            return false
+        }
+        if (recipe.instructions.length > MAX_INS_LEN) {
+            Log.d(TAG, "Instructions text is too long")
+            Toast.makeText(this, "You wrote too much in the instructions field. Please keep it at $MAX_INS_LEN or less", Toast.LENGTH_LONG).show()
+            return false
+        }
+
+
         return true
+    }
+
+
+    private fun getForbidden(string: String, regex: Regex): String {
+        val list = regex.split(string)
+        var string = ""
+        for (l in list) {
+            if (l.isBlank().not()) {
+                string += l.slice(IntRange(0, 0)) + ", "
+            }
+        }
+        return if (string.isNotBlank()) string.substring(IntRange(0, string.length - 3))
+        else string
     }
 }

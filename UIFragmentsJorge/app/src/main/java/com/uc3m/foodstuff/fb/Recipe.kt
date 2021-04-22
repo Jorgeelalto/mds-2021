@@ -22,6 +22,7 @@ data class Recipe (
         var ingredients: String = "",
         var instructions: String = ""
 ) : Serializable {
+
     fun timeToString(time: Float): String {
         // Set the recipe time. We can do nicer things than putting just the number:
         var hours = time.toInt()
