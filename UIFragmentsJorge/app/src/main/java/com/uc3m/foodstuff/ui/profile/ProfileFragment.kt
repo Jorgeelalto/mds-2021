@@ -53,7 +53,7 @@ class ProfileFragment : Fragment() {
                 for (d in value.documents) {
                     val recipe = d.toObject(Recipe::class.java)
                     if (recipe != null) {
-                        recipeList!!.add(recipe)
+                        recipeList.add(recipe)
                     }
                 }
 

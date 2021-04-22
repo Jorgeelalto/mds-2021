@@ -2,7 +2,6 @@ package com.uc3m.foodstuff.api
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,10 +12,8 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import com.uc3m.foodstuff.R
-import com.uc3m.foodstuff.ui.showrecipe.ShowRecipeActivity
 import com.uc3m.foodstuff.ui.webrecipe.WebRecipeActivity
 import java.io.Serializable
-import java.net.URL
 
 const val TAG = "ApiRecipeRecyclerAdapt"
 

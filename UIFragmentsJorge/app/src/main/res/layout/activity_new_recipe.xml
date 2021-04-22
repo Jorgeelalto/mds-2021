@@ -40,7 +40,9 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/header"
         android:layout_margin="16dp"
-        android:hint="@string/name"/>
+        android:hint="@string/name"
+        android:autofillHints="Name"
+        android:inputType="text" />
 
     <EditText
         android:id="@+id/description_edit"
@@ -48,7 +50,9 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/name_edit"
         android:layout_margin="16dp"
-        android:hint="@string/description"/>
+        android:hint="@string/description"
+        android:autofillHints="Description"
+        android:inputType="text" />
 
     <RadioGroup
         android:id="@+id/radio_group"
@@ -130,7 +134,9 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/gluten_free"
         android:layout_margin="16dp"
-        android:hint="@string/preparation_time"/>
+        android:hint="@string/preparation_time"
+        android:autofillHints="Preparation time"
+        android:inputType="numberDecimal" />
 
     <EditText
         android:id="@+id/ingredients_edit"
@@ -144,7 +150,8 @@
         tools:ignore="MissingConstraints"
         android:gravity="top"
         tools:layout_editor_absoluteX="18dp"
-        android:autofillHints="Add your ingredients here." />
+        android:autofillHints="Add your ingredients here."
+        android:inputType="text" />
 
 
     <EditText
@@ -154,7 +161,9 @@
         app:layout_constraintTop_toBottomOf="@id/ingredients_edit"
         android:layout_margin="16dp"
         android:gravity="top"
-        android:hint="@string/recipe_steps" />
+        android:hint="@string/recipe_steps"
+        android:autofillHints=""
+        android:inputType="text" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
@@ -165,7 +174,8 @@
         android:layout_margin="@dimen/fab_margin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:srcCompat="@drawable/ic_baseline_check_24" />
+        app:srcCompat="@drawable/ic_baseline_check_24"
+        android:contentDescription="@string/submit_recipe" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_image"
@@ -177,6 +187,7 @@
         app:layout_constraintBottom_toTopOf="@+id/fab"
         app:layout_constraintRight_toRightOf="parent"
         android:tint="@color/white"
-        app:srcCompat="@drawable/ic_baseline_image_search_24" />
+        app:srcCompat="@drawable/ic_baseline_image_search_24"
+        android:contentDescription="@string/add_image_from_gallery" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

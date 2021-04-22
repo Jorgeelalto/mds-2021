@@ -16,7 +16,8 @@
         android:scaleType="fitXY"
         android:src="@drawable/loginback"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        android:contentDescription="@string/background_image" />
 
     <ImageView
         android:id="@+id/logoImage"
@@ -28,14 +29,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        />
+        android:contentDescription="@string/food_stuff_logo" />
 
     <TextView
         android:id="@+id/LoginTitle"
         android:layout_width="match_parent"
         android:elegantTextHeight="true"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="Food Stuff"
+        android:text="@string/food_stuff"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textColorHighlight="@color/black"

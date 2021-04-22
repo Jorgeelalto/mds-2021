@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.uc3m.foodstuff.MainActivity
 import com.uc3m.foodstuff.R
-import com.uc3m.foodstuff.ui.search.SearchFragment
 
 
 class WebRecipeActivity: AppCompatActivity() {
