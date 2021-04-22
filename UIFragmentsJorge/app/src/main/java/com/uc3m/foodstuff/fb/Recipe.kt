@@ -1,11 +1,6 @@
 package com.uc3m.foodstuff.fb
 
-import android.content.Context
-import android.util.Log
-import android.widget.Toast
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-import com.uc3m.foodstuff.login.TAG
+import java.io.Serializable
 
 data class Recipe (
         var user: String = "",
@@ -19,5 +14,30 @@ data class Recipe (
         var dairy_free: Boolean = false,
         var time: Float = 0.0f,
         var ingredients: String = "",
-        var instructions: String = ""
-)
+        var instructions: String = "",
+        var image: String = ""
+) : Serializable {
+
+    fun timeToString(time: Float): String {
+        // Set the recipe time. We can do nicer things than putting just the number:
+        var hours = time.toInt()
+        var min = time
+        while (min > 1) min -= 1
+        min *= 60
+        var minutes = min.toInt()
+        if (minutes == 60) {
+            minutes = 0
+            hours += 1
+        }
+        // Print the numbers into a nice string
+        return if (hours == 0) {
+            "$minutes minutes"
+        } else if (minutes == 0) {
+            if (hours == 1) "$hours hour"
+            else "$hours hours"
+        } else {
+            if (hours == 1) "$hours hour and $minutes minutes"
+            else "$hours hours and $minutes minutes"
+        }
+    }
+}

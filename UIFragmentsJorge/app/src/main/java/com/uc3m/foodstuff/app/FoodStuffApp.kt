@@ -11,11 +11,4 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class FoodStuffApp: Application() {
 
-    /* TODO here will be the API
-    val webservice by lazy {
-        Retrofit.Builder()
-                .baseUrl("https://reecipe-weekly-default-rtdb.europe-west1.firebasedatabase.app")
-                .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
-                .build().create(ApiService::class.java)
-    }*/
 }

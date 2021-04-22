@@ -33,11 +33,17 @@
         android:textColor="@color/gray2"
         />
 
+    <ImageView
+        android:id="@+id/RecipeImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/RecipeName"/>
+
     <TextView
         android:id="@+id/RecipeDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/RecipeName"
+        app:layout_constraintTop_toBottomOf="@id/RecipeImage"
         android:layout_margin="16dp"
         android:text="Description"/>
 
@@ -49,32 +55,24 @@
         android:layout_margin="16dp"
         android:text="Vegetarian or Not"/>
 
-    <!-- TODO onclicks de radio buttons -->
-
-
-    <!--    <androidx.constraintlayout.widget.Guideline-->
-<!--        android:id="@+id/guideline1"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:orientation="vertical"-->
-<!--        app:layout_constraintGuide_percent="0.33" />-->
-
     <CheckBox
         android:id="@+id/gluten_freeRecipe"
+        android:enabled="false"
+        android:textColor="@color/gray2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="18dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="60dp"
-        android:backgroundTint="@color/main_3"
         android:text="Gluten-free"
-        android:textColor="@color/gray2"
         app:layout_constraintLeft_toLeftOf="parent"
 
         app:layout_constraintTop_toBottomOf="@id/RecipeDescription" />
 
     <CheckBox
         android:id="@+id/cheapRecipe"
+        android:enabled="false"
+        android:textColor="@color/gray2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
@@ -85,6 +83,8 @@
 
     <CheckBox
         android:id="@+id/dairy_freeRecipe"
+        android:enabled="false"
+        android:textColor="@color/gray2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
