@@ -36,10 +36,13 @@ class ShowRecipeActivity  : AppCompatActivity() {
 
         // Set the image
         if (recipe.image.isNotBlank()) {
-            val decodedByte = Base64.decode(recipe.image, Base64.DEFAULT)
-            val bitmap = BitmapFactory.decodeByteArray(decodedByte, 0, decodedByte.size)
-            Log.d("ShowRecipeActivity", recipe.image.substring(IntRange(0, 12)))
-            findViewById<ImageView>(R.id.RecipeImage).setImageBitmap(bitmap)
+            try {
+                val decodedByte = Base64.decode(recipe.image, Base64.DEFAULT)
+                val bitmap = BitmapFactory.decodeByteArray(decodedByte, 0, decodedByte.size)
+                findViewById<ImageView>(R.id.RecipeImage).setImageBitmap(bitmap)
+            } catch (e: Exception) {
+                Log.d("ShowRecipeActivity", "Could not load image")
+            }
         }
     }
 }
