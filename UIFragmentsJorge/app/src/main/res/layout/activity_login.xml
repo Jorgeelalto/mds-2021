@@ -6,15 +6,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".login.LoginActivity"
-    tools:ignore="ExtraText">
+    tools:ignore="ExtraText"
+    android:background="@color/blue1">
 
     <ImageView
         android:id="@+id/loginBackground"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@null"
-        android:scaleType="fitXY"
-        android:src="@drawable/loginback"
+        android:scaleType="centerCrop"
+        android:alpha="0.15"
+        android:src="@drawable/ic_foodstuff_bg"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints"
         android:contentDescription="@string/background_image" />
@@ -23,9 +25,10 @@
         android:id="@+id/logoImage"
         android:layout_width="130dp"
         android:layout_height="130dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="120dp"
         android:background="@null"
         android:src="@drawable/ic_foodstuff"
+        android:alpha="0.75"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -37,6 +40,7 @@
         android:elegantTextHeight="true"
         android:fontFamily="sans-serif-smallcaps"
         android:text="@string/food_stuff"
+        android:alpha="0.75"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textColorHighlight="@color/black"
@@ -48,16 +52,21 @@
         tools:layout_editor_absoluteX="-7dp"
         android:layout_height="wrap_content" />
 
-    <!--
-    <ImageView
-        android:id="@+id/logoImage"
-        android:layout_width="wrap_content"
-        android:layout_height="200dp"
-        android:layout_marginTop="104dp"
-        android:background="@null"
-        android:src="@drawable/cheflogo"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />-->
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="24dp"
+        android:textColor="@color/gray1"
+        android:hint="@string/prompt_email"
+        android:inputType="textPersonName"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/LoginTitle" />
 
     <EditText
         android:id="@+id/password"
@@ -66,7 +75,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="24dp"
-        android:background="@color/white"
+        android:textColor="@color/gray1"
         android:hint="@string/prompt_password"
         android:imeActionLabel="@string/action_login"
         android:imeOptions="actionDone"
@@ -85,29 +94,13 @@
         android:layout_height="wrap_content"
         android:layout_margin="24dp"
         android:layout_marginTop="8dp"
-        android:backgroundTint="@color/main_3"
+        android:backgroundTint="@color/tan2"
         android:text="@string/action_register"
-        android:textColor="@color/black"
+        android:textColor="@color/gray1"
         app:layout_constraintHorizontal_bias="0.375"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@id/password" />
-
-    <EditText
-        android:id="@+id/username"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="368dp"
-        android:layout_marginEnd="24dp"
-        android:background="@color/white"
-        android:hint="@string/prompt_email"
-        android:inputType="textPersonName"
-        android:selectAllOnFocus="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/login"
@@ -120,7 +113,7 @@
         app:layout_constraintLeft_toRightOf="@+id/guideline"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/password"
-        android:textColor="@android:color/black"/>
+        android:textColor="@color/white"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -144,4 +137,16 @@
         app:layout_constraintStart_toStartOf="@+id/password"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.3" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Background image by originalme2 @ Vecteezy.com"
+        android:textSize="12sp"
+        android:alpha="0.7"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.8"
+        app:layout_constraintTop_toBottomOf="@id/login"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
