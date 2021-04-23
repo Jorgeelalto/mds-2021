@@ -157,7 +157,8 @@
         android:gravity="top"
         tools:layout_editor_absoluteX="18dp"
         android:autofillHints="Add your ingredients here."
-        android:inputType="text" />
+        android:inputType="textCapSentences|textMultiLine"
+        android:scrollHorizontally="false"/>
 
 
     <EditText
@@ -169,7 +170,8 @@
         android:gravity="top"
         android:hint="@string/recipe_steps"
         android:autofillHints=""
-        android:inputType="text" />
+        android:scrollHorizontally="false"
+        android:inputType="textCapSentences|textMultiLine"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
