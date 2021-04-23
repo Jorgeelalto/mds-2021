@@ -29,8 +29,8 @@ import java.io.InputStream
 
 const val TAG = "NewRecipeActivity"
 const val MAX_NAME_LEN = 50
-const val MAX_ING_LEN = 300
-const val MAX_INS_LEN = 500
+const val MAX_ING_LEN = 1000
+const val MAX_INS_LEN = 1000
 val BIG_REGEX = Regex("[a-zA-Z0-9- ,.'\"!%()+?&\\n]+")
 val SML_REGEX = Regex("[a-zA-Z0-9- '\"%()+&]+")
 

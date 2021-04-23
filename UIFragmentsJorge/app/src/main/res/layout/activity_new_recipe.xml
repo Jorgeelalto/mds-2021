@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.newrecipe.NewRecipeActivity">
+    tools:context=".ui.newrecipe.NewRecipeActivity"
+    android:background="@color/blue0">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
@@ -66,17 +67,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/non_vegetarian"
+            android:buttonTint="@color/blue2"
             android:checked="true"/>
         <RadioButton
             android:id="@+id/radio_vegetarian"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="12dp"
+            android:buttonTint="@color/blue2"
             android:text="@string/vegetarian"/>
         <RadioButton
             android:id="@+id/radio_vegan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:buttonTint="@color/blue2"
             android:text="@string/vegan"/>
     </RadioGroup>
 
@@ -88,7 +92,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/guideline1"
         app:layout_constraintTop_toBottomOf="@id/radio_group"
-        android:backgroundTint="@color/main_3"
+        android:buttonTint="@color/blue2"
         android:layout_marginHorizontal="16dp"
         android:textColor="@color/gray2"
         />
@@ -105,6 +109,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/cheap"
         android:text="@string/cheap"
+        android:buttonTint="@color/blue2"
         app:layout_constraintLeft_toRightOf="@id/gluten_free"
         app:layout_constraintTop_toBottomOf="@id/radio_group"
         android:layout_marginHorizontal="24dp"
@@ -122,6 +127,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/dairy_free"
         android:text="@string/dairy_free"
+        android:buttonTint="@color/blue2"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@id/radio_group"
@@ -151,7 +157,8 @@
         android:gravity="top"
         tools:layout_editor_absoluteX="18dp"
         android:autofillHints="Add your ingredients here."
-        android:inputType="text" />
+        android:inputType="textCapSentences|textMultiLine"
+        android:scrollHorizontally="false"/>
 
 
     <EditText
@@ -163,11 +170,12 @@
         android:gravity="top"
         android:hint="@string/recipe_steps"
         android:autofillHints=""
-        android:inputType="text" />
+        android:scrollHorizontally="false"
+        android:inputType="textCapSentences|textMultiLine"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
-        app:backgroundTint="@color/main_3"
+        app:backgroundTint="@color/tan1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
@@ -179,7 +187,7 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_image"
-        app:backgroundTint="@color/gray4"
+        app:backgroundTint="@color/tan2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
