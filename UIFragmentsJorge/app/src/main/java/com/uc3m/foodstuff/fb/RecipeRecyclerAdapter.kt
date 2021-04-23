@@ -56,7 +56,11 @@ class RecipeRecyclerAdapter(
             if (recipe.image.isNotBlank()) {
                 val decodedByte = Base64.decode(recipe.image, Base64.DEFAULT)
                 val bitmap = BitmapFactory.decodeByteArray(decodedByte, 0, decodedByte.size)
-                Log.d("RecipeRecyclerAdapter", recipe.image.substring(IntRange(0, 12)))
+                try {
+                    Log.d("RecipeRecyclerAdapter", recipe.image.substring(IntRange(0, 12)))
+                } catch (e: Exception) {
+                    Log.d("RecipeRecyclerAdapter", "No image found")
+                }
                 recipeImg?.setImageBitmap(bitmap)
             }
         }
